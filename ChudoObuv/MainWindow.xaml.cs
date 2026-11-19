@@ -11,22 +11,14 @@ namespace ChudoObuv
 
             try
             {
-                using var connection = Database.GetConnection();
-                connection.Open();
+                var products = Database.GetProducts();
 
                 MessageBox.Show(
-                    "Подключение к базе данных успешно!",
-                    "Чудо Обувь",
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Information);
+                    $"Подключение успешно!\nНайдено товаров: {products.Rows.Count}");
             }
             catch (Exception ex)
             {
-                MessageBox.Show(
-                    "Ошибка подключения к базе данных:\n" + ex.Message,
-                    "Ошибка",
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Error);
+                MessageBox.Show(ex.Message);
             }
         }
     }
